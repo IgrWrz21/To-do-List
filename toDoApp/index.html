@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>To-Do-List</title>
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+    <link rel="stylesheet" href="assets/styles/chechbox.css" />
+    <script src="assets/scripts/app.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/6ff8e35ce0.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <template
+      ><div class="task apearAnimation">
+        <div class="checkbox-wrapper-15">
+          <input class="inp-cbx" id="" type="checkbox" style="display: none" />
+          <label class="cbx" for="">
+            <span>
+              <svg width="12px" height="9px" viewbox="0 0 12 9">
+                <polyline points="1 5 4 8 11 1"></polyline>
+              </svg>
+            </span>
+            <span class="taskContent">
+              <p></p>
+            </span>
+          </label>
+        </div>
+
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+    </template>
+  </head>
+
+  <body>
+    <header><h1>To-Do-List</h1></header>
+    <div class="taskAdder">
+      <label for="addTask" id="labelTask">Add your task to the list: </label>
+      <textarea
+        placeholder="Enter your task"
+        id="addTask"
+        name="addTask"
+        rows="1"
+        wrap="soft"
+      ></textarea>
+      <i class="fa-solid fa-plus" id="addButton"></i>
+    </div>
+    <main></main>
+  </body>
+</html>

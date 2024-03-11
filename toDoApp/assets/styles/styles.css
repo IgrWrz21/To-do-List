@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  min-height: 100svh;
+  display: flex;
+  background-color: #eeeeee;
+  flex-direction: column;
+  color: #222831;
+  align-items: center;
+  justify-content: flex-start;
+}
+header {
+  padding: 5% 0;
+}
+
+.taskAdder {
+  width: 70%;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  padding: 5% 5%;
+  background-color: #76abae;
+  border-radius: 6px;
+}
+#labelTask {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 2rem;
+}
+#addTask {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #eeeeee;
+
+  font-size: 1rem;
+  resize: none;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+}
+#addTask:focus::placeholder {
+  color: transparent;
+}
+.fa-plus {
+  margin-top: 15px;
+  padding: 5px;
+  border: 2px dashed black;
+  transition: 0.4s;
+}
+.fa-plus:hover {
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+main {
+  min-height: 30svh;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+}
+
+.task {
+  display: flex;
+  overflow: hidden;
+  min-width: 30%;
+  position: relative;
+  margin: 1% 0;
+  padding: 2% 2%;
+  background-color: #fff;
+  border: 2px solid black;
+  border-radius: 7px;
+  animation: apper 0.3s ease;
+}
+#taskComliton {
+  margin-right: 10px;
+}
+
+.fa-xmark {
+  color: red;
+  position: absolute;
+
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  transition: 0.4s;
+}
+
+.fa-xmark:hover {
+  cursor: pointer;
+  color: black;
+  border-radius: 3px;
+  background-color: #fd5c63;
+  transform: rotate(180deg);
+}
+.apearAnimation {
+  animation: apper 0.3s ease;
+}
+.disapearAnimation {
+  animation: disapper 0.3s ease;
+}
+@keyframes apper {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes disapper {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+}
