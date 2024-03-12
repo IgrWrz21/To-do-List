@@ -11,6 +11,11 @@ html {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
+  --BGCcolor: #76abae;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -21,6 +26,7 @@ body {
   color: #222831;
   align-items: center;
   justify-content: flex-start;
+  scrollbar-width: none;
 }
 header {
   padding: 5% 0;
@@ -35,7 +41,7 @@ header {
   justify-content: center;
   font-size: 1.4rem;
   padding: 5% 5%;
-  background-color: #76abae;
+  background-color: var(--BGCcolor);
   border-radius: 6px;
 }
 #labelTask {
@@ -119,6 +125,58 @@ main {
 .disapearAnimation {
   animation: disapper 0.3s ease;
 }
+
+.bgc {
+  position: fixed;
+  background-color: grey;
+  opacity: 0.7;
+  width: 100%;
+  height: 100svh;
+
+  z-index: 999;
+}
+.popup {
+  position: fixed;
+  background-color: #eeeeee;
+  background-color: var(--BGCcolor);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  top: 50%;
+  left: 50%;
+  width: 30%;
+  height: 130px;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+  border-radius: 7px;
+
+  z-index: 999;
+  /* transition: transform 0s; */
+  /* animation: popupAnimation 0.7s; */
+}
+
+.popup h3 {
+  text-align: center;
+}
+
+.popup button {
+  width: 45px;
+  height: 35px;
+  padding: 5px 10px;
+}
+
+#acceptButton {
+  position: absolute;
+  top: 75%;
+  left: 40%;
+  transform: translate(-80%, -50%);
+}
+#deinedButton {
+  position: absolute;
+  top: 75%;
+  right: 40%;
+  transform: translate(80%, -50%);
+}
+
 @keyframes apper {
   from {
     transform: scale(0);
@@ -135,4 +193,83 @@ main {
   to {
     transform: scale(0);
   }
+}
+
+@keyframes popupAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  80% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* CSS */
+
+/* CSS */
+.button-21 {
+  align-items: center;
+  appearance: none;
+  background-color: #3eb2fd;
+  background-image: linear-gradient(1deg, #4f58fd, #149bf3 99%);
+  background-size: calc(100% + 20px) calc(100% + 20px);
+  border-radius: 100px;
+  border-width: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #eeeeee;
+  cursor: pointer;
+  display: inline-flex;
+  /* font-family: CircularStd, sans-serif; */
+  font-family: "Roboto", sans-serif;
+  font-size: 0.7rem;
+  height: auto;
+  justify-content: center;
+  line-height: 1.5;
+  padding: 6px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s, background-position 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.button-21:active,
+.button-21:focus {
+  outline: none;
+}
+
+.button-21:hover {
+  background-position: -20px -20px;
+}
+
+.button-21:focus:not(:active) {
+  box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 0.125em;
+}
+
+.visable {
+  display: block;
+}
+
+.stopScroll {
+  overflow-y: hidden;
 }

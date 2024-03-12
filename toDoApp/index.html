@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <template
+    <template id="taskTemplate"
       ><div class="task apearAnimation">
         <div class="checkbox-wrapper-15">
           <input class="inp-cbx" id="" type="checkbox" style="display: none" />
@@ -26,8 +26,15 @@
             </span>
           </label>
         </div>
-
         <i class="fa-solid fa-xmark"></i>
+      </div>
+    </template>
+    <template id="popupTemplate">
+      <div class="bgc"></div>
+      <div class="popup">
+        <h3>Are you sure you want remove this task?</h3>
+        <button id="acceptButton" class="button-21">Yes</button>
+        <button id="deinedButton" class="button-21">No</button>
       </div>
     </template>
   </head>
