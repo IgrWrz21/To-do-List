@@ -31,7 +31,7 @@
     </template>
     <template id="popupTemplate">
       <div class="bgc"></div>
-      <div class="popup">
+      <div class="popup apearAnimation">
         <h3>Are you sure you want remove this task?</h3>
         <button id="acceptButton" class="button-21">Yes</button>
         <button id="deinedButton" class="button-21">No</button>
@@ -51,6 +51,12 @@
         wrap="soft"
       ></textarea>
       <i class="fa-solid fa-plus" id="addButton"></i>
+      <div id="progressBar">
+        <div id="bar" style="width: 50%">
+          <span id="barValue"></span>
+        </div>
+      </div>
+      <!-- <progress value="12.5" max="100"></progress> -->
     </div>
     <main></main>
   </body>

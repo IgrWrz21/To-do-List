@@ -64,6 +64,9 @@ header {
 #addTask:focus::placeholder {
   color: transparent;
 }
+#addTask:focus {
+  border: 2px solid var(--BGCcolor);
+}
 .fa-plus {
   margin-top: 15px;
   padding: 5px;
@@ -74,6 +77,22 @@ header {
   cursor: pointer;
   transform: rotate(180deg);
 }
+
+#progressBar {
+  margin-top: 10px;
+  height: 30px;
+  width: 90%;
+  background: lightgrey;
+  border: solid black 2px;
+  border-radius: 20px;
+}
+#bar {
+  background-color: #3eb2fd;
+  background-image: linear-gradient(1deg, #4f58fd, #149bf3 99%);
+  height: 100%;
+  border-radius: 20px 0 0 20px;
+}
+
 main {
   min-height: 30svh;
   width: 70%;
@@ -125,7 +144,9 @@ main {
 .disapearAnimation {
   animation: disapper 0.3s ease;
 }
-
+.removeTask {
+  animation: removeTask 1.2s ease;
+}
 .bgc {
   position: fixed;
   background-color: grey;
@@ -141,17 +162,17 @@ main {
   background-color: var(--BGCcolor);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  top: 50%;
-  left: 50%;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 30%;
   height: 130px;
   padding: 20px;
-  transform: translate(-50%, -50%);
   border-radius: 7px;
 
   z-index: 999;
-  /* transition: transform 0s; */
-  /* animation: popupAnimation 0.7s; */
 }
 
 .popup h3 {
@@ -192,30 +213,6 @@ main {
   }
   to {
     transform: scale(0);
-  }
-}
-
-@keyframes popupAnimation {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.4);
-  }
-  60% {
-    transform: scale(1.1);
-  }
-  70% {
-    transform: scale(1.2);
-  }
-  80% {
-    transform: scale(1);
-  }
-  90% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
   }
 }
 
