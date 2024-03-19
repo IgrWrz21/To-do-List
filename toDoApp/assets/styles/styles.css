@@ -28,6 +28,7 @@ body {
   justify-content: flex-start;
   scrollbar-width: none;
 }
+
 header {
   padding: 5% 0;
 }
@@ -44,11 +45,13 @@ header {
   background-color: var(--BGCcolor);
   border-radius: 6px;
 }
+
 #labelTask {
   flex-grow: 1;
   text-align: center;
   font-size: 2rem;
 }
+
 #addTask {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -61,24 +64,29 @@ header {
   width: 100%;
   text-align: center;
 }
+
 #addTask:focus::placeholder {
   color: transparent;
 }
+
 #addTask:focus {
   border: 2px solid var(--BGCcolor);
 }
+
 .fa-plus {
   margin-top: 15px;
   padding: 5px;
   border: 2px dashed black;
   transition: 0.4s;
 }
+
 .fa-plus:hover {
   cursor: pointer;
   transform: rotate(180deg);
 }
 
 #progressBar {
+  position: relative;
   margin-top: 10px;
   height: 30px;
   width: 90%;
@@ -88,12 +96,22 @@ header {
   flex-basis: 100%;
   overflow: hidden;
 }
+
+#progressBar p {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 0.2rem;
+  z-index: 9999;
+}
+
 .bar {
   background-color: #3eb2fd;
   background-image: linear-gradient(1deg, #4f58fd, #149bf3 99%);
   height: 100%;
   border-radius: 20px 0 0 20px;
   transition: 0.4s ease;
+  text-align: right;
 }
 
 .fullBar {
@@ -121,6 +139,7 @@ main {
   border-radius: 7px;
   animation: apper 0.3s ease;
 }
+
 #taskComliton {
   margin-right: 10px;
 }
@@ -145,15 +164,19 @@ main {
   background-color: #fd5c63;
   transform: rotate(180deg);
 }
+
 .apearAnimation {
   animation: apper 0.3s ease;
 }
+
 .disapearAnimation {
   animation: disapper 0.3s ease;
 }
+
 .removeTask {
   animation: removeTask 1.2s ease;
 }
+
 .bgc {
   position: fixed;
   background-color: grey;
@@ -163,6 +186,7 @@ main {
 
   z-index: 999;
 }
+
 .popup {
   position: fixed;
   background-color: #eeeeee;
@@ -198,6 +222,7 @@ main {
   left: 40%;
   transform: translate(-80%, -50%);
 }
+
 #deinedButton {
   position: absolute;
   top: 75%;
@@ -209,6 +234,7 @@ main {
   from {
     transform: scale(0);
   }
+
   to {
     transform: scale(1);
   }
@@ -218,6 +244,7 @@ main {
   from {
     transform: scale(1);
   }
+
   to {
     transform: scale(0);
   }

@@ -133,6 +133,8 @@ class appInit {
 class ProgressBar {
   constructor() {
     this.progressBarDiv = document.querySelector(".bar");
+    this.progressBarDivContainer = this.progressBarDiv.previousElementSibling;
+    console.log(this.progressBarDivContainer);
   }
 
   updateProgresBar(activeTasks, allTaskNumber) {
@@ -141,7 +143,7 @@ class ProgressBar {
     //   ? this.progressBarDiv.classList.add("fullBar")
     //   : this.progressBarDiv.classList.remove("fullBar");
     this.progressBarDiv.style.width = `${lvl}%`;
-    this.progressBarDiv.textContent = `${lvl.toFixed(1)}%`;
+    this.progressBarDivContainer.textContent = `${lvl.toFixed(0)}%`;
   }
 }
 
