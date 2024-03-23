@@ -24,7 +24,7 @@ class Task {
     let clone = taskTemplate.content.cloneNode(true);
     const checkbox = clone.querySelector("input");
     checkbox.id = this.id;
-    this.localStorageClass = ls;
+    //this.localStorageClass = ls;
     clone.querySelector(".taskContent p").textContent = this.taskContent;
     clone.querySelector("label").htmlFor = this.id;
     this.button = clone.querySelector(".fa-xmark");
@@ -37,12 +37,7 @@ class Task {
       this.isActive = checkbox.checked;
       this.isActive ? activeTasksNumber++ : activeTasksNumber--;
       this.progressBar.updateProgresBar(activeTasksNumber, alltasksNumber);
-      //this.setTaskFromLocalStorageHandler();
-      // this.localStorageClass.setTaskFromLocalStorageHandler(
-      //   this.id,
-      //   this.taskContent,
-      //   this.isActive
-      // );
+
       this.localStorageClass.updateTaskFromLocalStorageHandler(
         this.id,
         this.isActive
@@ -81,18 +76,37 @@ class Task {
       this.isActive = checkbox.checked;
       this.isActive ? activeTasksNumber++ : activeTasksNumber--;
       this.progressBar.updateProgresBar(activeTasksNumber, alltasksNumber);
+      this.localStorageClass.updateTaskFromLocalStorageHandler(
+        this.id,
+        this.isActive
+      );
+      console.log(
+        `activeTasks:${activeTasksNumber}, allTasks:${alltasksNumber}`
+      );
+      //this.progressBar.updateProgresBar(activeTasksNumber, alltasksNumber);
       //this.setTaskFromLocalStorageHandler();
       // this.localStorageClass.setTaskFromLocalStorageHandler(
       //   this.id,
       //   this.taskContent,
       //   this.isActive
       // );
+
       //console.log(this.isActive, " ", this.id);
     });
     mainSectionNode.prepend(clone);
     //console.log(this.progressBar, this.button);
 
     //this.setTaskFromLocalStorageHandler();
+  }
+  setEvtListenerForCheckBox() {
+    this.isActive = checkbox.checked;
+    this.isActive ? activeTasksNumber++ : activeTasksNumber--;
+    this.progressBar.updateProgresBar(activeTasksNumber, alltasksNumber);
+
+    this.localStorageClass.updateTaskFromLocalStorageHandler(
+      this.id,
+      this.isActive
+    );
   }
 
   setEvtListenerForPoppUp(button) {
@@ -262,19 +276,20 @@ class LocalStorageHandler {
 }
 
 class appInit {
-  static startInit() {
-    if (!localStorage.length) {
-      return;
-    } else {
-      let ls = new LocalStorageHandler();
-      ls.reBuildTaskHandler();
-    }
-  }
+  // static startInit() {
+  //   if (!localStorage.length) {
+  //     return;
+  //   } else {
+  //     let ls = new LocalStorageHandler();
+  //     ls.reBuildTaskHandler();
+  //   }
+  // }
   static init() {
     let b1 = new ProgressBar();
     let ls = new LocalStorageHandler();
     if (localStorage.length) {
       ls.reBuildTaskHandler();
+      b1.updateProgresBar(activeTasksNumber, alltasksNumber);
     }
     addTaskButton.addEventListener("click", () => {
       if (textAreaNode.value === "") {
