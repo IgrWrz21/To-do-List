@@ -5,6 +5,7 @@
     <title>To-Do-List</title>
     <link rel="stylesheet" href="assets/styles/styles.css" />
     <link rel="stylesheet" href="assets/styles/chechbox.css" />
+    <link rel="stylesheet" href="assets/styles/addButton.css" />
     <script src="assets/scripts/app.js" defer></script>
     <script
       src="https://kit.fontawesome.com/6ff8e35ce0.js"
@@ -53,7 +54,28 @@
         rows="1"
         wrap="soft"
       ></textarea>
-      <i class="fa-solid fa-plus" id="addButton"></i>
+      <!-- <i class="fa-solid fa-plus" id="addButton"></i> -->
+      <button type="button" class="button" id="addButton">
+        <span class="button__text">Add task</span>
+        <span class="button__icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke="currentColor"
+            height="24"
+            fill="none"
+            class="svg"
+          >
+            <line y2="19" y1="5" x2="12" x1="12"></line>
+            <line y2="12" y1="12" x2="19" x1="5"></line>
+          </svg>
+        </span>
+      </button>
+
       <div id="progressBar">
         <p>0%</p>
         <div class="bar" style="width: 0"></div>
