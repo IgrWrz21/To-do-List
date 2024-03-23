@@ -209,10 +209,15 @@ class appInit {
   static init() {
     let progressBarObject = new ProgressBar();
     let localStorageObject = new LocalStorageHandler();
-    if (JSON.parse(localStorage.getItem("tasks")).length) {
+
+    if (
+      localStorage.getItem("tasks") &&
+      JSON.parse(localStorage.getItem("tasks")).length
+    ) {
       localStorageObject.reBuildTaskHandler();
       progressBarObject.updateProgresBar(activeTasksNumber, alltasksNumber);
     }
+
     addTaskButton.addEventListener("click", () => {
       if (textAreaNode.value === "") {
         alert("Add someting to the input");
