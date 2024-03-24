@@ -106,6 +106,7 @@ To get a local copy up and running follow these simple example steps.
 - [x] Add saving task in localStorage
 - [ ] Add creation date of task
 - [ ] Divied task with their priority
+- [ ] Add tooltip to task if it is too long to display
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

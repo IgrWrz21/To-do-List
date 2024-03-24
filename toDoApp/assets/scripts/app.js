@@ -141,8 +141,8 @@ class ProgressBar {
 
 class LocalStorageHandler {
   constructor() {
-    let i = JSON.parse(localStorage.getItem("tasks"));
-    this.allTasksHistory = i || [];
+    const taskArrayFromLocalStorage = JSON.parse(localStorage.getItem("tasks"));
+    this.allTasksHistory = taskArrayFromLocalStorage || [];
     this.progressBarStatus;
   }
 
@@ -171,14 +171,12 @@ class LocalStorageHandler {
   }
   removeTaskFromLocalStorageHandler(id) {
     let tempTaskArray = JSON.parse(localStorage.getItem("tasks"));
+    const removedItemIndex = tempTaskArray.findIndex(
+      (task) => task.taskId === id
+    );
 
-    for (let i = 0; i < tempTaskArray.length; i++) {
-      if (tempTaskArray[i].taskId === id) {
-        tempTaskArray.splice(i, 1);
-        localStorage.setItem("tasks", JSON.stringify(tempTaskArray));
-        break;
-      }
-    }
+    tempTaskArray.splice(removedItemIndex, 1);
+    localStorage.setItem("tasks", JSON.stringify(tempTaskArray));
     localStorage.setItem("allTasks", alltasksNumber);
     localStorage.setItem("activeTasks", activeTasksNumber);
     this.allTasksHistory = tempTaskArray;

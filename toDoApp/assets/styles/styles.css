@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,8 +7,9 @@
 
 html {
   font-size: 20px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 400;
+  font-optical-sizing: auto;
   font-style: normal;
   --BGCcolor: #76abae;
 }
@@ -73,18 +73,6 @@ header {
   border: 2px solid var(--BGCcolor);
 }
 
-.fa-plus {
-  margin-top: 15px;
-  padding: 5px;
-  border: 2px dashed black;
-  transition: 0.4s;
-}
-
-.fa-plus:hover {
-  cursor: pointer;
-  transform: rotate(180deg);
-}
-
 #progressBar {
   position: relative;
   margin-top: 10px;
@@ -99,10 +87,11 @@ header {
 
 #progressBar p {
   position: absolute;
+  font-size: 1.2rem;
   top: 50%;
   transform: translate(0, -50%);
-  right: 0.2rem;
-  z-index: 9999;
+  right: 0.35rem;
+  z-index: 100;
 }
 
 .bar {
@@ -138,11 +127,12 @@ main {
   border: 2px solid black;
   border-radius: 7px;
   animation: apper 0.3s ease;
+  font-size: 1rem;
 }
 
-#taskComliton {
+/* #taskComliton {
   margin-right: 10px;
-}
+} */
 
 .fa-xmark {
   color: red;
@@ -303,4 +293,46 @@ main {
 
 .stopScroll {
   overflow-y: hidden;
+}
+@media (max-width: 1020px) {
+  .popup h3 {
+    font-size: 0.92rem;
+  }
+  .popup {
+    width: 35%;
+    height: 150px;
+    padding: 25px;
+  }
+}
+@media (max-width: 570px) {
+  .popup h3 {
+    font-size: 0.8rem;
+  }
+  .popup {
+    width: 35%;
+    height: 150px;
+    padding: 25px;
+  }
+}
+
+@media (max-width: 440px) {
+  .popup h3 {
+    font-size: 0.7rem;
+  }
+  .popup {
+    width: 40%;
+    height: 180px;
+    padding: 25px;
+  }
+}
+
+@media (max-width: 300px) {
+  .popup h3 {
+    font-size: 0.6rem;
+  }
+  .popup {
+    width: 42%;
+    height: 160px;
+    padding: 25px;
+  }
 }
