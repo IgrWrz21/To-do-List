@@ -22,6 +22,7 @@ class Task {
 
     clone.querySelector(".taskContent p").textContent = this.taskContent;
     clone.querySelector("label").htmlFor = this.id;
+    clone.querySelector(".creationDate").textContent = this.getCrationDate();
     this.button = clone.querySelector(".fa-xmark");
     this.progressBar = pgrsBar;
     this.localStorageClass = ls;
@@ -47,6 +48,15 @@ class Task {
         checkbox.checked = true;
       }
     }
+  }
+  getCrationDate() {
+    const currentDate = new Date();
+    const day = currentDate.getDate();
+    const month = currentDate.getMonth() + 1; // Add 1 as months are zero-based
+    const year = currentDate.getFullYear();
+    const creationDate = `${day}/${month}/${year}`;
+    //this.creationDate=`${day}/${month}/${year}`
+    return `Created ${creationDate}`;
   }
 
   setEvtListenerForCheckBox(checkbox) {
