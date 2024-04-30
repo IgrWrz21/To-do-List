@@ -104,7 +104,8 @@ To get a local copy up and running follow these simple example steps.
 
 - [x] Add progresBar funciton
 - [x] Add saving task in localStorage
-- [ ] Add creation date of task
+- [x] Add creation date and dead-line date of task
+  - [x] Connect Google Calendar API
 - [ ] Divied task with their priority
 - [ ] Add tooltip to task if it is too long to display
 
