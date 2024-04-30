@@ -72,7 +72,45 @@ header {
 #addTask:focus {
   border: 2px solid var(--BGCcolor);
 }
+.dateInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#dateSelector {
+  margin-top: 0.2rem;
+  padding: 3px;
+  font-size: 0.7rem;
+  color: black;
+  font-weight: bold;
+  background-color: #eeeeee;
+  border-radius: 0.3rem;
+  border: black 1px solid;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+::-webkit-calendar-picker-indicator {
+  font-size: 1rem;
+  cursor: pointer;
+}
+::-webkit-datetime-edit-month-field {
+  user-select: none;
+}
+/* ::selection {
+  color: none;
+  background: none;
+} */
 
+::-webkit-datetime-edit-day-field {
+  color: black;
+  background: none;
+}
+
+#dateSelector:focus {
+  outline: none;
+}
 #progressBar {
   position: relative;
   margin-top: 10px;
@@ -146,6 +184,7 @@ p.deadLineDate {
   opacity: 0.6;
   bottom: 5px;
   right: 29px;
+  font-weight: bold;
 }
 .fa-calendar {
   color: black;

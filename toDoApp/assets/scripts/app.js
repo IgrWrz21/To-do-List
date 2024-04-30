@@ -3,16 +3,19 @@ const textAreaNode = document.getElementById("addTask");
 const mainSectionNode = document.querySelector("main");
 const taskTemplate = document.getElementById("taskTemplate");
 const popupTemplate = document.getElementById("popupTemplate");
+const datePickerElement = document.getElementById("dateSelector");
 
 let alltasksNumber = 0;
 let activeTasksNumber = 0;
 let taskId = 0;
 
 class Task {
-  constructor(id, active = false, taskText) {
+  constructor(id, active = false, taskText, deadLineDate) {
     this.taskContent = textAreaNode.value || taskText;
     this.isActive = active;
     this.id = `cbx-${id}`;
+    this.creationDate = this.getCrationDate();
+    this.deadLineDate = deadLineDate || datePickerElement.value;
   }
 
   createTask(pgrsBar, ls, taskType) {
@@ -23,10 +26,11 @@ class Task {
     clone.querySelector(".taskContent p").textContent = this.taskContent;
     clone.querySelector("label").htmlFor = this.id;
     clone.querySelector(".creationDate").textContent = this.getCrationDate();
+
     this.button = clone.querySelector(".fa-xmark");
     this.progressBar = pgrsBar;
     this.localStorageClass = ls;
-
+    this.getDeadLineDate(clone.querySelector(".deadLineDate"), taskType);
     this.setEvtListenerForPoppUp(this.button);
 
     checkbox.addEventListener(
@@ -41,7 +45,9 @@ class Task {
       this.localStorageClass.setTaskFromLocalStorageHandler(
         this.id,
         this.taskContent,
-        this.isActive
+        this.isActive,
+        this.creationDate,
+        this.deadLineDate
       );
     } else {
       if (this.isActive) {
@@ -51,12 +57,23 @@ class Task {
   }
   getCrationDate() {
     const currentDate = new Date();
-    const day = currentDate.getDate();
-    const month = currentDate.getMonth() + 1; // Add 1 as months are zero-based
-    const year = currentDate.getFullYear();
-    const creationDate = `${day}/${month}/${year}`;
-    //this.creationDate=`${day}/${month}/${year}`
-    return `Created ${creationDate}`;
+    const formatter = new Intl.DateTimeFormat("pl", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    let formattedDate = formatter.format(currentDate);
+    formattedDate = formattedDate.replace(/\./g, "/");
+    this.creationDate = formattedDate;
+    return `Created ${formattedDate}`;
+  }
+  getDeadLineDate(deadLineTextNode, mode) {
+    console.log(mode);
+    if (mode !== "oldTask") {
+      const [year, month, day] = this.deadLineDate.split("-");
+      this.deadLineDate = `${day}/${month}/${year}`;
+    }
+    deadLineTextNode.textContent = `Dead-Line ${this.deadLineDate}`;
   }
 
   setEvtListenerForCheckBox(checkbox) {
@@ -156,11 +173,19 @@ class LocalStorageHandler {
     this.progressBarStatus;
   }
 
-  setTaskFromLocalStorageHandler(id, taskContent, isActive) {
+  setTaskFromLocalStorageHandler(
+    id,
+    taskContent,
+    isActive,
+    creationDate,
+    deadLineDate
+  ) {
     const taskObj = {
       taskId: id,
       taskContent: taskContent,
       isActive: isActive,
+      creationDate: creationDate,
+      deadLineDate: deadLineDate,
     };
     this.allTasksHistory.push(taskObj);
     localStorage.setItem("tasks", JSON.stringify(this.allTasksHistory));
@@ -199,7 +224,12 @@ class LocalStorageHandler {
 
     for (const task of taskArry) {
       let idTask = task.taskId.replace("cbx-", "");
-      let t2 = new Task(idTask, task.isActive, task.taskContent);
+      let t2 = new Task(
+        idTask,
+        task.isActive,
+        task.taskContent,
+        task.deadLineDate
+      );
 
       t2.createTask(b1, this, "oldTask");
       alltasksNumber = localStorage.getItem("allTasks");
@@ -212,11 +242,26 @@ class LocalStorageHandler {
     taskId = +lastElementOfHistoryArray.taskId.replace("cbx-", "") + 1;
   }
 }
+class DatePicker {
+  constructor() {
+    this.setDefaultAndMinDate();
+  }
+  convertDate() {
+    const crtDDate = new Date().toISOString().split("T")[0];
+    return crtDDate;
+  }
+  setDefaultAndMinDate() {
+    const currentDate = new Date();
+    datePickerElement.setAttribute("value", this.convertDate(currentDate));
+    datePickerElement.setAttribute("min", this.convertDate(currentDate));
+  }
+}
 
 class appInit {
   static init() {
     let progressBarObject = new ProgressBar();
     let localStorageObject = new LocalStorageHandler();
+    let datePicker = new DatePicker();
 
     if (
       localStorage.getItem("tasks") &&

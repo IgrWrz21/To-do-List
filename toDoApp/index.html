@@ -11,6 +11,7 @@
       src="https://kit.fontawesome.com/6ff8e35ce0.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <template id="taskTemplate">
@@ -28,8 +29,8 @@
             </span>
           </label>
         </div>
-        <p class="creationDate">Created 20/04/2024</p>
-        <p class="deadLineDate">DeadLine 30/04/2024</p>
+        <p class="creationDate"></p>
+        <p class="deadLineDate"></p>
         <i class="fa-solid fa-calendar"></i>
         <i class="fa-solid fa-xmark"></i>
       </div>
@@ -57,6 +58,10 @@
         rows="1"
         wrap="soft"
       ></textarea>
+      <div class="dateInput">
+        <label for="dateSelector">Select dead-line date:</label>
+        <input type="date" id="dateSelector" name="trip-start" />
+      </div>
 
       <button type="button" class="button" id="addButton">
         <span class="button__text">Add task</span>
