@@ -27,12 +27,13 @@ class Task {
     clone.querySelector("label").htmlFor = this.id;
     clone.querySelector(".creationDate").textContent = this.getCrationDate();
 
+    this.eventCalendarButton = clone.querySelector(".fa-calendar");
     this.button = clone.querySelector(".fa-xmark");
     this.progressBar = pgrsBar;
     this.localStorageClass = ls;
     this.getDeadLineDate(clone.querySelector(".deadLineDate"), taskType);
     this.setEvtListenerForPoppUp(this.button);
-
+    this.setLisnerForCreateEvent();
     checkbox.addEventListener(
       "change",
       this.setEvtListenerForCheckBox.bind(this, checkbox)
@@ -67,13 +68,48 @@ class Task {
     this.creationDate = formattedDate;
     return `Created ${formattedDate}`;
   }
+  formatData(data, charToSplit, newChar, options) {
+    let year, month, day;
+    if (options.old === "YrFirst") {
+      [year, month, day] = data.split(`${charToSplit}`);
+    } else if (options.old === "dayFirst") {
+      [day, month, year] = data.split(`${charToSplit}`);
+    }
+    if (options.new === "YrFirst") {
+      console.log("yearfirst");
+      return `${year}${newChar}${month}${newChar}${day}`;
+    } else if (options.new === "dayFirst") {
+      console.log("dayFirst");
+      return `${day}${newChar}${month}${newChar}${year}`;
+    }
+  }
   getDeadLineDate(deadLineTextNode, mode) {
-    console.log(mode);
+    //console.log(this.deadLineDate);
+
     if (mode !== "oldTask") {
-      const [year, month, day] = this.deadLineDate.split("-");
-      this.deadLineDate = `${day}/${month}/${year}`;
+      //console.log(this.deadLineDate);
+      this.deadLineDate = this.formatData(this.deadLineDate, "-", "/", {
+        old: "YrFirst",
+        new: "dayFirst",
+      });
     }
     deadLineTextNode.textContent = `Dead-Line ${this.deadLineDate}`;
+  }
+
+  setLisnerForCreateEvent() {
+    this.eventCalendarButton.addEventListener("click", () => {
+      console.log(this.deadLineDate);
+      const dateForEvent = this.formatData(this.deadLineDate, "/", "-", {
+        old: "dayFirst",
+        new: "YrFirst",
+      });
+      console.log(dateForEvent);
+      addCalendarEvent(
+        this.taskContent,
+        `Dead-Line for:${this.taskContent}`,
+        dateForEvent
+      );
+    });
   }
 
   setEvtListenerForCheckBox(checkbox) {

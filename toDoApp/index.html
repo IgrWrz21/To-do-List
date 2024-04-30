@@ -6,12 +6,13 @@
     <link rel="stylesheet" href="assets/styles/styles.css" />
     <link rel="stylesheet" href="assets/styles/chechbox.css" />
     <link rel="stylesheet" href="assets/styles/addButton.css" />
-    <script src="assets/scripts/app.js" defer></script>
+
     <script
       src="https://kit.fontawesome.com/6ff8e35ce0.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+
+    <script src="assets/scripts/app.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <template id="taskTemplate">
@@ -49,6 +50,12 @@
     <header>
       <h1>To-Do-List</h1>
     </header>
+    <button class="button" id="authorize_button" onclick="handleAuthClick()">
+      Authorize
+    </button>
+    <button class="button" id="signout_button" onclick="handleSignoutClick()">
+      Sign Out
+    </button>
     <div class="taskAdder">
       <label for="addTask" id="labelTask">Add your task to the list: </label>
       <textarea
@@ -89,6 +96,24 @@
         <div class="bar" style="width: 0"></div>
       </div>
     </div>
+    <pre id="content" style="white-space: pre-wrap"></pre>
     <main></main>
+    <script src="assets/scripts/calendarAPI.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+    <script
+      async
+      defer
+      id="api"
+      src="https://apis.google.com/js/api.js"
+      onload="gapiLoaded()"
+    ></script>
+    <script
+      async
+      defer
+      id="client"
+      src="https://accounts.google.com/gsi/client"
+      onload="gisLoaded()"
+    ></script>
   </body>
 </html>
