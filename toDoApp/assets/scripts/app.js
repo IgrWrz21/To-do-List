@@ -76,18 +76,13 @@ class Task {
       [day, month, year] = data.split(`${charToSplit}`);
     }
     if (options.new === "YrFirst") {
-      console.log("yearfirst");
       return `${year}${newChar}${month}${newChar}${day}`;
     } else if (options.new === "dayFirst") {
-      console.log("dayFirst");
       return `${day}${newChar}${month}${newChar}${year}`;
     }
   }
   getDeadLineDate(deadLineTextNode, mode) {
-    //console.log(this.deadLineDate);
-
     if (mode !== "oldTask") {
-      //console.log(this.deadLineDate);
       this.deadLineDate = this.formatData(this.deadLineDate, "-", "/", {
         old: "YrFirst",
         new: "dayFirst",
@@ -98,12 +93,11 @@ class Task {
 
   setLisnerForCreateEvent() {
     this.eventCalendarButton.addEventListener("click", () => {
-      console.log(this.deadLineDate);
       const dateForEvent = this.formatData(this.deadLineDate, "/", "-", {
         old: "dayFirst",
         new: "YrFirst",
       });
-      console.log(dateForEvent);
+
       addCalendarEvent(
         this.taskContent,
         `Dead-Line for:${this.taskContent}`,
@@ -114,7 +108,7 @@ class Task {
 
   setEvtListenerForCheckBox(checkbox) {
     this.isActive = checkbox.checked;
-    console.log(this.isActive);
+
     this.isActive ? activeTasksNumber++ : activeTasksNumber--;
     this.progressBar.updateProgresBar(activeTasksNumber, alltasksNumber);
 
@@ -297,7 +291,7 @@ class appInit {
   static init() {
     let progressBarObject = new ProgressBar();
     let localStorageObject = new LocalStorageHandler();
-    let datePicker = new DatePicker();
+    new DatePicker();
 
     if (
       localStorage.getItem("tasks") &&

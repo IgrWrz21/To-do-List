@@ -20,18 +20,12 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
-// document
-//   .getElementById("authorize_button")
-//   .addEventListener("click", handleAuthClick);
-// document
-//   .getElementById("signout_button")
-//   .addEventListener("click", handleSignoutClick);
-
-// document.getElementById("api").addEventListener("load", gapiLoaded);
-// document.getElementById("client").addEventListener("load", gisLoaded);
-
-document.getElementById("authorize_button").style.visibility = "hidden";
-document.getElementById("signout_button").style.visibility = "hidden";
+const SVGSpanElement = document.querySelector(".authIcon");
+const autorizeButton = document.getElementById("authorize_button");
+const signtOutButton = document.getElementById("signout_button");
+autorizeButton.style.visibility = "hidden";
+signtOutButton.style.visibility = "hidden";
+signtOutButton.style.display = "none";
 
 /**
  * Callback after api.js is loaded.
@@ -71,7 +65,7 @@ function gisLoaded() {
  */
 function maybeEnableButtons() {
   if (gapiInited && gisInited) {
-    document.getElementById("authorize_button").style.visibility = "visible";
+    autorizeButton.style.visibility = "visible";
   }
 }
 
@@ -83,9 +77,15 @@ function handleAuthClick() {
     if (resp.error !== undefined) {
       throw resp;
     }
-    document.getElementById("signout_button").style.visibility = "visible";
-    document.getElementById("authorize_button").innerText = "Refresh";
-    await listUpcomingEvents();
+    console.log("logged");
+    toggleAddEventButton();
+    signtOutButton.style.visibility = "visible";
+    signtOutButton.style.display = "block";
+    console.dir(autorizeButton.lastChild);
+    autorizeButton.querySelector(".textInAtrBtn").textContent = "Refresh";
+    SVGSpanElement.style.backgroundImage =
+      "url('/toDoApp/icons/refreashLogo.svg')";
+    // await listUpcomingEvents();
   };
 
   if (gapi.client.getToken() === null) {
@@ -106,35 +106,24 @@ function handleSignoutClick() {
   if (token !== null) {
     google.accounts.oauth2.revoke(token.access_token);
     gapi.client.setToken("");
-    document.getElementById("content").innerText = "";
-    document.getElementById("authorize_button").innerText = "Authorize";
-    document.getElementById("signout_button").style.visibility = "hidden";
+    //document.getElementById("content").innerText = "";
+    toggleAddEventButton();
+    autorizeButton.querySelector(".textInAtrBtn").textContent = "Authorize";
+    SVGSpanElement.style.backgroundImage =
+      "url('/toDoApp/icons/calendarLogo.svg')";
+    signtOutButton.style.visibility = "hidden";
+    signtOutButton.style.display = "none";
   }
 }
 
+const toggleAddEventButton = () => {
+  const calendarIcons = mainSectionNode.querySelectorAll(".fa-calendar");
+  calendarIcons.forEach((calendarIcon) =>
+    calendarIcon.classList.toggle("workingMode")
+  );
+};
+
 const addCalendarEvent = (title, desc, date) => {
-  // const title = document.getElementById("title").value;
-  // const desc = document.getElementById("desc").value;
-  // const date = document.getElementById("date").value;
-  //const start = document.getElementById("st").value;
-  //const end = document.getElementById("et").value;
-
-  // const startTime = new Date(date + "," + start).toISOString();
-  // const endTime = new Date(date + "," + end).toISOString();
-
-  // var event = {
-  //   summary: title,
-  //   location: "Google Meet",
-  //   description: desc,
-  //   end: {
-  //     date: date,
-  //   },
-  //   reminders: {
-  //     useDefault: false,
-  //     overrides: [{ method: "email", minutes: 24 * 60 }],
-  //   },
-  // };
-
   const event = {
     summary: title,
     description: desc,
@@ -164,42 +153,3 @@ const addCalendarEvent = (title, desc, date) => {
     console.log(event.htmlLink);
   });
 };
-
-/**
- * Print the summary and start datetime/date of the next ten events in
- * the authorized user's calendar. If no events are found an
- * appropriate message is printed.
- */
-async function listUpcomingEvents() {
-  let response;
-  try {
-    const request = {
-      calendarId: "primary",
-      timeMin: new Date().toISOString(),
-      showDeleted: false,
-      singleEvents: true,
-      maxResults: 10,
-      orderBy: "startTime",
-    };
-    response = await gapi.client.calendar.events.list(request);
-  } catch (err) {
-    console.log(err.message);
-    return;
-  }
-
-  const events = response.result.items;
-  if (!events || events.length == 0) {
-    //document.getElementById("content").innerText = "No events found.";
-    console.log("No events found.");
-    return;
-  }
-  // Flatten to string to display
-  console.dir(events);
-  const output = events.reduce(
-    (str, event) =>
-      `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
-    "Events:\n"
-  );
-  //document.getElementById("content").innerText = output;
-  console.log(output);
-}

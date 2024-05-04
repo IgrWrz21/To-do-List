@@ -22,6 +22,7 @@ body {
   min-height: 100svh;
   display: flex;
   background-color: #eeeeee;
+  /* background-color: grey; */
   flex-direction: column;
   color: #222831;
   align-items: center;
@@ -35,7 +36,7 @@ header {
 
 .taskAdder {
   width: 70%;
-
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -45,7 +46,87 @@ header {
   background-color: var(--BGCcolor);
   border-radius: 6px;
 }
+.buttonWraper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  top: 0.1rem;
+  width: 300px;
 
+  right: 0.5rem;
+}
+.autAndOutBtns {
+  border-radius: 0.3rem;
+  margin-top: 0.2rem;
+
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  border: 1px solid black;
+  background-color: #3eb2fd;
+  background-image: linear-gradient(1deg, #4f58fd, #149bf3 99%);
+  overflow: hidden;
+}
+
+#authorize_button {
+  width: 130px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  transition: 0.9s;
+  position: relative;
+
+  /* text-transform: uppercase; */
+}
+.textInAtrBtn {
+  transition: transform 0.5s;
+
+  opacity: 1;
+}
+#authorize_button:hover .authIcon {
+  transform: translateX(45px);
+  position: absolute;
+}
+#authorize_button:hover .textInAtrBtn {
+  transform: translateX(200%);
+  position: absolute;
+  left: 40px;
+}
+
+.authIcon {
+  display: block;
+  background-image: url("/toDoApp/icons/calendarLogo.svg");
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 2rem;
+  transition: 0.5s;
+
+  height: 2rem;
+}
+#signout_button {
+  width: 2.3rem;
+}
+
+.logOutIcon {
+  display: block;
+  background-image: url("/toDoApp/icons/logOut.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 2rem;
+  transition: 0.3s;
+  margin: 0 auto;
+  height: 2rem;
+}
+
+.logOutIcon:hover {
+  transform: scale(0.9);
+}
 #labelTask {
   flex-grow: 1;
   text-align: center;
@@ -198,6 +279,14 @@ p.deadLineDate {
   line-height: 20px;
   text-align: center;
   transition: 0.2s linear;
+  transition: 0.4s;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.workingMode {
+  pointer-events: all;
+  opacity: 1;
 }
 
 .fa-calendar:hover {
