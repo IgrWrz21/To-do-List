@@ -50,13 +50,26 @@
     <header>
       <h1>To-Do-List</h1>
     </header>
-    <button class="button" id="authorize_button" onclick="handleAuthClick()">
-      Authorize
-    </button>
-    <button class="button" id="signout_button" onclick="handleSignoutClick()">
-      Sign Out
-    </button>
+
     <div class="taskAdder">
+      <div class="buttonWraper">
+        <button
+          class="autAndOutBtns"
+          id="authorize_button"
+          onclick="handleAuthClick()"
+        >
+          <span class="authIcon"></span>
+          <span class="textInAtrBtn">Authorize</span>
+        </button>
+        <button
+          class="autAndOutBtns"
+          id="signout_button"
+          onclick="handleSignoutClick()"
+        >
+          <span class="logOutIcon"></span>
+        </button>
+      </div>
+
       <label for="addTask" id="labelTask">Add your task to the list: </label>
       <textarea
         placeholder="Enter your task"
