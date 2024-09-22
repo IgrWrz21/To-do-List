@@ -77,11 +77,11 @@ function handleAuthClick() {
     if (resp.error !== undefined) {
       throw resp;
     }
-    console.log("logged");
+
     toggleAddEventButton();
     signtOutButton.style.visibility = "visible";
     signtOutButton.style.display = "block";
-    console.dir(autorizeButton.lastChild);
+
     autorizeButton.querySelector(".textInAtrBtn").textContent = "Refresh";
     SVGSpanElement.style.backgroundImage =
       "url('/toDoApp/icons/refreashLogo.svg')";
@@ -143,7 +143,6 @@ const addCalendarEvent = (title, desc, date) => {
     },
   };
 
-  console.log(event);
   const request = gapi.client.calendar.events.insert({
     calendarId: "primary",
     resource: event,
