@@ -100,7 +100,7 @@ header {
 
 .authIcon {
   display: block;
-  background-image: url("/icons/calendarLogo.svg");
+  background-image: url("./icons/calendarLogo.svg");
 
   background-repeat: no-repeat;
   background-size: contain;
@@ -115,7 +115,7 @@ header {
 
 .logOutIcon {
   display: block;
-  background-image: url("/icons/logOut.svg");
+  background-image: url("./icons/logOut.svg");
   background-repeat: no-repeat;
   background-size: contain;
   width: 2rem;
