@@ -134,7 +134,6 @@ class Task {
     setTimeout(() => {
       target.remove();
 
-      console.log(this.isActive);
       if (this.isActive) {
         alltasksNumber--;
         activeTasksNumber--;
