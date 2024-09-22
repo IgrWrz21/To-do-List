@@ -83,7 +83,7 @@ function handleAuthClick() {
     signtOutButton.style.display = "block";
     console.dir(autorizeButton.lastChild);
     autorizeButton.querySelector(".textInAtrBtn").textContent = "Refresh";
-    SVGSpanElement.style.backgroundImage = "url('./icons/refreashLogo.svg')";
+    SVGSpanElement.style.backgroundImage = "url('/icons/refreashLogo.svg')";
     // await listUpcomingEvents();
   };
 
