@@ -100,7 +100,7 @@ header {
 
 .authIcon {
   display: block;
-  background-image: url("../../icons/calendarLogo.svg");
+  background-image: url("/icons/calendarLogo.svg");
 
   background-repeat: no-repeat;
   background-size: contain;
