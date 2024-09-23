@@ -27,6 +27,20 @@ autorizeButton.style.visibility = "hidden";
 signtOutButton.style.visibility = "hidden";
 signtOutButton.style.display = "none";
 
+// calendarAPI.js
+let isLoggedIn = false;
+function loginUser() {
+  // Your login logic here
+  isLoggedIn = true;
+  console.log("User logged in");
+}
+
+function logoutUser() {
+  // Your logout logic here
+  isLoggedIn = false;
+  console.log("User logged out");
+}
+
 /**
  * Callback after api.js is loaded.
  */
@@ -78,13 +92,14 @@ function handleAuthClick() {
       throw resp;
     }
     console.log("logged");
+    loginUser();
     toggleAddEventButton();
     signtOutButton.style.visibility = "visible";
     signtOutButton.style.display = "block";
-    console.dir(autorizeButton.lastChild);
+
     autorizeButton.querySelector(".textInAtrBtn").textContent = "Refresh";
     SVGSpanElement.style.backgroundImage =
-      "url('/toDoApp/icons/refreashLogo.svg')";
+      "url('/To-do-List/icons/refreashLogo.svg')";
     // await listUpcomingEvents();
   };
 
@@ -106,11 +121,12 @@ function handleSignoutClick() {
   if (token !== null) {
     google.accounts.oauth2.revoke(token.access_token);
     gapi.client.setToken("");
+    logoutUser();
     //document.getElementById("content").innerText = "";
     toggleAddEventButton();
     autorizeButton.querySelector(".textInAtrBtn").textContent = "Authorize";
     SVGSpanElement.style.backgroundImage =
-      "url('/toDoApp/icons/calendarLogo.svg')";
+      "url('/To-do-List/icons/calendarLogo.svg')";
     signtOutButton.style.visibility = "hidden";
     signtOutButton.style.display = "none";
   }
@@ -119,7 +135,7 @@ function handleSignoutClick() {
 const toggleAddEventButton = () => {
   const calendarIcons = mainSectionNode.querySelectorAll(".fa-calendar");
   calendarIcons.forEach((calendarIcon) =>
-    calendarIcon.classList.toggle("workingMode")
+    calendarIcon.classList.toggle("disabled")
   );
 };
 
