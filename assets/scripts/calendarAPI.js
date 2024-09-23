@@ -32,13 +32,11 @@ let isLoggedIn = false;
 function loginUser() {
   // Your login logic here
   isLoggedIn = true;
-  console.log("User logged in");
 }
 
 function logoutUser() {
   // Your logout logic here
   isLoggedIn = false;
-  console.log("User logged out");
 }
 
 /**
