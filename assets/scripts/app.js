@@ -26,8 +26,11 @@ class Task {
     clone.querySelector(".taskContent p").textContent = this.taskContent;
     clone.querySelector("label").htmlFor = this.id;
     clone.querySelector(".creationDate").textContent = this.getCrationDate();
-
+    console.log(isLoggedIn);
     this.eventCalendarButton = clone.querySelector(".fa-calendar");
+    if (!isLoggedIn) {
+      this.eventCalendarButton.classList.add("disabled");
+    }
     this.button = clone.querySelector(".fa-xmark");
     this.progressBar = pgrsBar;
     this.localStorageClass = ls;

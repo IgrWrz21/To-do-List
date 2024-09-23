@@ -100,7 +100,7 @@ header {
 
 .authIcon {
   display: block;
-  background-image: url("/icons/calendarLogo.svg");
+  background-image: url("/To-do-List/icons/calendarLogo.svg");
 
   background-repeat: no-repeat;
   background-size: contain;
@@ -115,7 +115,7 @@ header {
 
 .logOutIcon {
   display: block;
-  background-image: url("/icons/logOut.svg");
+  background-image: url("/To-do-List/icons/logOut.svg");
   background-repeat: no-repeat;
   background-size: contain;
   width: 2rem;
@@ -280,6 +280,10 @@ p.deadLineDate {
   text-align: center;
   transition: 0.2s linear;
   transition: 0.4s;
+  /* pointer-events: none;
+  opacity: 0.5; */
+}
+.disabled {
   pointer-events: none;
   opacity: 0.5;
 }
